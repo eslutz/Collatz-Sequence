@@ -69,7 +69,7 @@ TEST(ValidDisplayOutput, DisplaySequenceTest) {
     EXPECT_EQ(returnedString, expectedString);
 }
 
-INSTANTIATE_TEST_CASE_P(
+INSTANTIATE_TEST_SUITE_P(
     CollatzTests,
     ValidNumberParameterizedTests,
     ::testing::Values(
@@ -82,7 +82,7 @@ INSTANTIATE_TEST_CASE_P(
     )
 );
 
-INSTANTIATE_TEST_CASE_P(
+INSTANTIATE_TEST_SUITE_P(
     CollatzTests,
     InvalidNumberParameterizedTests,
     ::testing::Values("0", "- 5")

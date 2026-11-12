@@ -1,14 +1,11 @@
-# Required Library Dependency
+# C++ Collatz sequence
 
-This program requires an additional libray to be added into the program solution to run.
+Requires CMake 3.22+, Git, and a C++17 compiler. The first configure downloads GoogleTest and upstream [BigInt](https://github.com/faheel/BigInt) at a pinned commit; later builds can use the cached checkout. Open this directory as a CMake project in Visual Studio, or run:
 
-## Steps to add library
+```sh
+cmake -S C++ -B build/collatz-cpp
+cmake --build build/collatz-cpp
+ctest --test-dir build/collatz-cpp --output-on-failure
+```
 
-- Download the code from [BigInt-Cpp-Library](https://github.com/eslutz/BigInt-Cpp-Library)
-- Open the CollatzSequence solution
-- Add a new Static Library project to the solution
-- Copy the BigInt header and class definition into the new Static Library project
-- Add the BigInt Static Library you created to the other three projects
-  - Add the library as a reference
-  - In the project go to `Properties > Configuration Properties > C/C++ > General`
-    - Under `Additional Include Directories` add the path to the BigInt Library
+Run `collatz_app` from the build directory. The BigInt dependency is MIT licensed; its license is included in the downloaded source.

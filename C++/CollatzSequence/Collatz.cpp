@@ -1,5 +1,19 @@
 #include "Collatz.h"
 
+// Upstream BigInt definitions are included in this translation unit only.
+#include "functions/utility.hpp"
+#include "functions/random.hpp"
+#include "constructors/constructors.hpp"
+#include "functions/conversion.hpp"
+#include "operators/assignment.hpp"
+#include "operators/unary_arithmetic.hpp"
+#include "operators/relational.hpp"
+#include "functions/math.hpp"
+#include "operators/binary_arithmetic.hpp"
+#include "operators/arithmetic_assignment.hpp"
+#include "operators/increment_decrement.hpp"
+#include "operators/io_stream.hpp"
+
 #include <sstream>
 
 /**
@@ -13,7 +27,11 @@
  */
 Collatz::Collatz(const string& startingNumber) {
 	try {
-		BigInt bigintStartingNumber = BigInt(startingNumber);
+		BigInt bigintStartingNumber;
+        try { bigintStartingNumber = BigInt(startingNumber); }
+        catch (const invalid_argument&) {
+            throw invalid_argument("Expected a non-negative integer, got '" + startingNumber + "'");
+        }
 
 		if (!startingNumber.empty() && bigintStartingNumber <= 0) {
 			throw invalid_argument("Expected a non-negative integer, got \'" + startingNumber + "\'");
@@ -48,7 +66,11 @@ Collatz::Collatz(const string& startingNumber) {
  */
 [[maybe_unused]] void Collatz::setStartingNumber(const string& newStartingNumber) {
 	try {
-		BigInt bigintStartingNumber = BigInt(newStartingNumber);
+		BigInt bigintStartingNumber;
+        try { bigintStartingNumber = BigInt(newStartingNumber); }
+        catch (const invalid_argument&) {
+            throw invalid_argument("Expected a non-negative integer, got '" + newStartingNumber + "'");
+        }
 
 		if (!newStartingNumber.empty() && bigintStartingNumber <= 0) {
 			throw invalid_argument("Expected a non-negative integer, got \'" + newStartingNumber + "\'");

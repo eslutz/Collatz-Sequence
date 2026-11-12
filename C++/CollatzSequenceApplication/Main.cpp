@@ -1,5 +1,8 @@
 #include "Collatz.h"
 
+#include <algorithm>
+#include <cctype>
+#include <limits>
 #include <iostream>
 #include <vector>
 
